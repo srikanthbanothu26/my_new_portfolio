@@ -1,5 +1,5 @@
 {
   "service": {
-    "command": "python manage.py runserver"
+    "command": "gunicorn project.wsgi:application --bind 0.0.0.0:$PORT"
   }
 }
