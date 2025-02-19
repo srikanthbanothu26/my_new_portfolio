@@ -1,0 +1,13 @@
+{% extends 'about.html' %}
+{% block sub_content %}
+<div class="certifications">
+    {%for x in certificate_info%}
+        {%if x.name%}
+        <p>{{x.name}}</p>
+        {% endif %}
+        {%if x.description%}
+        <p>{{x.description}}</p>
+        {%endif%}
+    {%endfor%}
+</div>
+{% endblock %} 

@@ -1,0 +1,18 @@
+{% extends 'about.html' %}
+{% block sub_content %}
+<div class="personal-info m-4">
+    {% for x in personal_info%}
+    <div class="flex">
+        <p>Name : {{x.first_name}}
+        {% if x.middle_name%}
+        {{x.middle_name}}
+        {% endif %}
+        {{x.last_name}}</p>
+    </div>
+    <p>Mobile Number: {{x.mobile_number}}</p>
+    <p>{{x.email_id}}</p>
+    <p>{{x.linked_in}}</p>
+    <p>{{x.github}}</p>
+    {% endfor %}
+</div>
+{% endblock %} 

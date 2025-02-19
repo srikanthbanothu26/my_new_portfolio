@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="h-full">
+        <div id="navbar" class="section flex justify-between items-center h-12 border-b-2">
+            <h1 class="tab px-4 cursor-pointer" data-url="{% url 'personal_info' %}">
+                <a href="{% url 'personal_info' %}">Personal Info</a>
+            </h1>
+            <h2 class="tab px-4 cursor-pointer" data-url="{% url 'education_info' %}">
+                <a href="{% url 'education_info' %}">Education</a>
+            </h2>
+            <h3 class="tab px-4 cursor-pointer" data-url="{% url 'skills' %}">
+                <a href="{% url 'skills' %}">Skills</a>
+            </h3>
+            <h4 class="tab px-4 cursor-pointer" data-url="{% url 'project_info' %}">
+                <a href="{% url 'project_info' %}">Projects</a>
+            </h4>
+            <h5 class="tab px-4 cursor-pointer" data-url="{% url 'certifications' %}">
+                <a href="{% url 'certifications' %}">Certificates</a>
+            </h5>
+            <h6 class="tab px-4 cursor-pointer" data-url="{% url 'workexperience' %}">
+                <a href="{% url 'workexperience' %}">Work Experience</a>
+            </h6>
+            <h1 class="tab px-4 cursor-pointer" data-url="{% url 'webapplications' %}">
+                <a href="{% url 'webapplications' %}">Web Applications</a>
+            </h1>
+        </div>
+        {% block sub_content %}
+        hello
+        {% endblock %} 
+    </div>
+    
+    <script>
+        // Function to set active tab based on current URL
+        function setActiveTab() {
+            // Get the current URL path
+            const currentPath = window.location.pathname;
+            
+            // Loop through all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                // Get the URL from the data attribute
+                const tabUrl = tab.getAttribute('data-url');
+                
+                // Check if the tab URL matches the current URL
+                if (currentPath === tabUrl) {
+                    tab.classList.add('border-b-2', 'border-blue-600');
+                    // Store the active tab in local storage
+                    localStorage.setItem('activeTab', tabUrl);
+                } else {
+                    tab.classList.remove('border-b-2', 'border-blue-600');
+                }
+            });
+        }
+
+        // On page load, set the active tab
+        window.addEventListener('DOMContentLoaded', setActiveTab);
+
+        // On click, update the active tab
+        document.querySelectorAll('.tab a').forEach(link => {
+            link.addEventListener('click', () => {
+                localStorage.setItem('activeTab', link.getAttribute('href'));
+            });
+        });
+    </script>
+    
+{% endblock %}

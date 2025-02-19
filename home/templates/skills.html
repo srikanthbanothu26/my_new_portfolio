@@ -1,0 +1,8 @@
+{% extends 'about.html' %}
+{% block sub_content %}
+<div class="skills">
+   {%for x in skill_info%}
+   <p>{{x.name}}</p>
+   {%endfor%}
+</div>
+{% endblock %} 

@@ -1,0 +1,9 @@
+{% extends 'about.html' %}
+{% block sub_content %}
+<div class="project_info">
+    {% for x in project_info%}
+    <p>{{x.name}}</p>
+    <p>{{x.description}}</p>
+    {%endfor%}
+</div>
+{% endblock %} 

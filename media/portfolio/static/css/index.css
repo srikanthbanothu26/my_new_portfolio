@@ -1,0 +1,32 @@
+.scroll1 {
+    display: flex;
+    gap: 2rem;
+    animation: scroll-left 15s linear infinite;
+    white-space: nowrap;
+}
+
+.scroll2 {
+    display: flex;
+    gap: 2rem;
+    animation: scroll-right 15s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(100%); /* Start from the right */
+    }
+    to {
+        transform: translateX(-100%); /* Move off-screen to the left */
+    }
+}
+
+@keyframes scroll-right {
+    from {
+        transform: translateX(-100%); /* Start from the left */
+    }
+    to {
+        transform: translateX(100%); /* Move off-screen to the right */
+    }
+}
+

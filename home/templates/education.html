@@ -1,0 +1,29 @@
+{% extends 'about.html' %}
+{% block sub_content %}
+<div class="flex m-12">
+    <div class="education grid grid-cols-3">
+        {% for x in education_info %}
+        <div class="flex flex-col p-5">
+            {% if x.name %}
+                <p class="text-2xl">{{ x.name }}</p>
+            {% endif %}
+            {% if x.institute %}
+                <p>{{ x.institute }}</p>
+            {% endif %}
+            {% if x.specilization %}
+                <p>{{ x.specilization }}</p>
+            {% endif %}
+            {% if x.join_date %}
+                <p>{{ x.join_date }}</p>
+            {% endif %}
+            {% if x.end_date %}
+                <p>{{ x.end_date }}</p>
+            {% endif %}
+            {% if x.marks %}
+                <p>{{ x.marks }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,19 @@
+{% extends 'about.html' %}
+{% block sub_content %}
+<div class="workexperience">
+    {%for x in workexperience_info%}
+        {%if x.name%}
+        <p>{{x.name}}</p>
+        {% endif %}
+        {%if x.description%}
+        <p>{{x.description}}</p>
+        {%endif%}
+        {%if x.join_date%}
+        <p>{{x.join_date}}</p>
+        {%endif%}
+        {%if x.end_date%}
+        <p>{{x.end_date}}</p>
+        {%endif%}
+    {%endfor%}
+</div>
+{% endblock %} 

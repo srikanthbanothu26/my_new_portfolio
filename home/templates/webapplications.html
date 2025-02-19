@@ -1,0 +1,16 @@
+{% extends 'about.html' %}
+{% block sub_content %}
+<div class="webapplications">
+    {%for x in webapplications_info%}
+    {%if x.name%}
+    <p>{{x.name}}</p>
+    {% endif %}
+    {%if x.description%}
+    <p>{{x.description}}</p>
+    {%endif%}
+    {%if x.technologies%}
+    <p>{{x.technologies}}</p>
+    {%endif%}
+{%endfor%}
+</div>
+{% endblock %} 
