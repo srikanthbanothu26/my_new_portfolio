@@ -1,13 +1,53 @@
 {% extends 'about.html' %}
 {% block sub_content %}
-<div class="certifications">
-    {%for x in certificate_info%}
-        {%if x.name%}
-        <p>{{x.name}}</p>
-        {% endif %}
-        {%if x.description%}
-        <p>{{x.description}}</p>
-        {%endif%}
-    {%endfor%}
+<div class="certifications m-6 p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Certifications</h2>
+    <div class="grid grid-cols-1 gap-6">
+        {% for x in certificate_info %}
+        <div class="p-6 bg-gray-100 rounded-lg shadow-md grid grid-cols-3 space-y-4 space-x-4">
+            <div class="col-span-2">
+            <!-- Certificate Name -->
+            {% if x.name %}
+                <h3 class="text-xl font-semibold text-gray-700">{{ x.name }}</h3>
+                {% endif %}
+
+                <!-- Certificate Description -->
+                {% if x.description %}
+                <p class="text-gray-600 text-justify">{{ x.description }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Certificate Attachments -->
+            {% if x.attachments.all %}
+            <div class="grid grid-cols-2 gap-4 items-center justify-center">
+                {% for attachment in x.attachments.all %}
+                <div class="w-44 h-44 bg-white shadow-lg rounded-lg overflow-hidden flex flex-col items-center p-2">
+                    {% with attachment.file.url as file_url %}
+                        {% if file_url|lower|slice:'-3:' == "jpg" or file_url|lower|slice:'-3:' == "png" or file_url|lower|slice:'-4:' == "jpeg" %}
+                            <!-- Display Image -->
+                            <img src="{{ file_url }}" alt="Certificate Image" class="w-full h-32 object-cover rounded-lg">
+                        {% elif file_url|lower|slice:'-3:' == "pdf" %}
+                            <!-- Embed PDF -->
+                            <iframe src="{{ file_url }}" class="w-full h-32 border rounded-lg"></iframe>
+                        {% else %}
+                            <!-- Show file icon and name -->
+                            <p class="text-gray-500 text-sm truncate">{{ attachment.file.name }}</p>
+                        {% endif %}
+
+                        <!-- Download Button -->
+                        <a href="{{ file_url }}" download 
+                           class="mt-2 px-3 py-1 text-white bg-blue-600 rounded-lg text-xs hover:bg-blue-700 transition">
+                            Download
+                        </a>
+                    {% endwith %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p class="text-gray-500 text-center">No certifications available yet.</p>
+        {% endfor %}
+    </div>
 </div>
-{% endblock %} 
+{% endblock %}

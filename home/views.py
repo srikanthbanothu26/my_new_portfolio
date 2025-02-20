@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import PersonalInfo,educationInfo,skillInfo,ProjectInfo,WebApplicationInfo,WorkexperienceInfo,CertificateInfo
-
+from .models import PersonalInfo,educationInfo,skillInfo,projectinfo,WebApplicationInfo,WorkexperienceInfo,CertificateInfo
 
 
 def home(request):
@@ -24,9 +23,9 @@ def skillinfo(request):
     skill_info=skillInfo.objects.all()
     return render(request,"skills.html",{"skill_info":skill_info})
 
-def projectinfo(request):
-    project_info=ProjectInfo.objects.all()
-    return render(request,"projects.html",{"project_info":project_info})
+def Projectinfo(request):
+    projects=projectinfo.objects.all()
+    return render(request,"projects.html",{"projects":projects})
 
 def certificateinfo(request):
     certificate_info=CertificateInfo.objects.all()

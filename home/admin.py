@@ -1,9 +1,30 @@
 from django.contrib import admin
-from .models import PersonalInfo,educationInfo,skillInfo,ProjectInfo,CertificateInfo,WebApplicationInfo,WorkexperienceInfo
+from .models import PersonalInfo,educationInfo,skillInfo,projectinfo,CertificateInfo,WebApplicationInfo,WorkexperienceInfo,Feature,ProcessStep,Category,Technology,CertificateAttachment,Workkeyresponsiblities
 
-# class TabularInlinePersonalInfo(admin.TabularInline):
-#     model = PersonalInfo
-#     extra = 1
+class Tabularlinefeature(admin.TabularInline):
+    model = Feature
+    extra = 1
+
+class TabularlineProcessStep(admin.TabularInline):
+    model = ProcessStep
+    extra = 1
+    
+class TabularlineCategory(admin.TabularInline):
+    model = Category
+    extra = 1
+    
+class TabularlineTechnology(admin.TabularInline):
+    model = Technology
+    extra = 1
+
+class TabularlineCertificate(admin.TabularInline):
+    model = CertificateAttachment
+    extra = 1
+    
+class Tablularkeyresponsiblities(admin.TabularInline):
+    model = Workkeyresponsiblities
+    extra = 1
+    
 class educationInfoAdmin(admin.ModelAdmin):
     list_display = ("name", "institute", "specilization","join_date","end_date","marks")
 
@@ -11,24 +32,24 @@ class skillInfoAdmin(admin.ModelAdmin):
     list_display = ["name"]
     # inlines = [TabularInlinePersonalInfo] 
 class PersonalInfoAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "middle_name", "last_name","mobile_number","email_id","linked_in","github")
+    list_display = ("first_name", "middle_name", "last_name","date_of_birth","mobile_number","email_id","linked_in","github")
     
-class ProjectInfoAdmin(admin.ModelAdmin):
-    list_display = ("name", "description")
+class ProjectsAdmin(admin.ModelAdmin):
+    inlines=[TabularlineProcessStep, TabularlineTechnology, Tabularlinefeature, TabularlineCategory]
     
 class CertificateInfoAdmin(admin.ModelAdmin):
-    list_display = ("name", "description")
+    inlines=[TabularlineCertificate]
     
 class WebApplicationInfoAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "technologies")
+    list_display=["name"]
    
 class WorkexperienceInfoAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "join_date","end_date")
+    inlines=[Tablularkeyresponsiblities]
     
 admin.site.register(PersonalInfo, PersonalInfoAdmin)
 admin.site.register(educationInfo,educationInfoAdmin)
 admin.site.register(skillInfo,skillInfoAdmin)
-admin.site.register(ProjectInfo,ProjectInfoAdmin)
+admin.site.register(projectinfo,ProjectsAdmin)
 admin.site.register(CertificateInfo,CertificateInfoAdmin)
 admin.site.register(WorkexperienceInfo,WorkexperienceInfoAdmin)
 admin.site.register(WebApplicationInfo,WebApplicationInfoAdmin)

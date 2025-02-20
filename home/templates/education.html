@@ -1,29 +1,33 @@
 {% extends 'about.html' %}
 {% block sub_content %}
 <div class="flex m-12">
-    <div class="education grid grid-cols-3">
+    <div class="education grid grid-cols-3 gap-8">
         {% for x in education_info %}
-        <div class="flex flex-col p-5">
-            {% if x.name %}
-                <p class="text-2xl">{{ x.name }}</p>
-            {% endif %}
-            {% if x.institute %}
-                <p>{{ x.institute }}</p>
-            {% endif %}
-            {% if x.specilization %}
-                <p>{{ x.specilization }}</p>
-            {% endif %}
-            {% if x.join_date %}
-                <p>{{ x.join_date }}</p>
-            {% endif %}
-            {% if x.end_date %}
-                <p>{{ x.end_date }}</p>
-            {% endif %}
-            {% if x.marks %}
-                <p>{{ x.marks }}</p>
-            {% endif %}
+        <div class="border p-4 rounded-lg shadow-lg">
+            <div class="flex flex-col">
+                {% if x.name %}
+                    <p class="text-2xl font-bold">{{ x.name }}</p>
+                {% endif %}
+                {% if x.institute %}
+                    <p class="text-lg">{{ x.institute }}</p>
+                {% endif %}
+                {% if x.specilization %}
+                    <p class="text-gray-700">{{ x.specilization }}</p>
+                {% endif %}
+                <div class="flex justify-between text-sm text-gray-500">
+                    {% if x.join_date %}
+                        <p>Start: {{ x.join_date }}</p>
+                    {% endif %}
+                    {% if x.end_date %}
+                        <p>End: {{ x.end_date }}</p>
+                    {% endif %}
+                </div>
+                {% if x.marks %}
+                    <p class="text-sm font-semibold">Marks: {{ x.marks }}</p>
+                {% endif %}
+            </div>
         </div>
         {% endfor %}
     </div>
 </div>
-{% endblock %} 
+{% endblock %}

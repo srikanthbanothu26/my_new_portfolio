@@ -6,14 +6,13 @@
         <title>Portfolio</title>
         <link rel="icon" href="/media/portfolio/static/svg/svg1.svg">
         <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="/media/portfolio/static/css/index.css">
         {% block child_styles %}
         {% endblock %}
     
         {% block child_main_scripts %}
         {% endblock %}
     </head>
-    <body class="h-screen m-0 p-0">
+    <body class="h-screen m-0 p-0 w-full">
         <div class="header h-16 bg-black grid grid-cols-3 items-center m-0 border-b-2 border-gray-600 cursor-pointer">
             <div class="text-white ml-4">
                 <a href={% url 'home' %}>

@@ -1,18 +1,25 @@
 {% extends 'about.html' %}
 {% block sub_content %}
-<div class="personal-info m-4">
-    {% for x in personal_info%}
-    <div class="flex">
-        <p>Name : {{x.first_name}}
-        {% if x.middle_name%}
-        {{x.middle_name}}
-        {% endif %}
-        {{x.last_name}}</p>
+<div class="personal-info m-6 p-6 bg-white shadow-lg rounded-lg">
+    {% for x in personal_info %}
+    <div class="grid grid-cols-3 gap-6 p-6 border-2 border-gray-300 rounded-lg">
+        <div class="space-y-4 font-semibold text-gray-700">
+            <p>Name:</p>
+            <p>DOB:</p>
+            <p>Mobile Number:</p>
+            <p>Email:</p>
+            <p>LinkedIn:</p> 
+            <p>GitHub:</p>
+        </div>
+        <div class="col-span-2 space-y-4 text-gray-800">
+            <p>{{ x.first_name }}{% if x.middle_name %} {{ x.middle_name }} {% endif %} {{ x.last_name }}</p>
+            <p>{{x.date_of_birth}}</p>
+            <p>{{ x.mobile_number }}</p>
+            <p class="text-blue-500 underline">{{ x.email_id }}</p>
+            <p><a href="{{ x.linked_in }}" class="text-blue-600 hover:underline">{{ x.linked_in }}</a></p>
+            <p><a href="{{ x.github }}" class="text-gray-600 hover:underline">{{ x.github }}</a></p>
+        </div>
     </div>
-    <p>Mobile Number: {{x.mobile_number}}</p>
-    <p>{{x.email_id}}</p>
-    <p>{{x.linked_in}}</p>
-    <p>{{x.github}}</p>
     {% endfor %}
 </div>
-{% endblock %} 
+{% endblock %}
