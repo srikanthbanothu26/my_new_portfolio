@@ -1,70 +1,73 @@
 {% extends 'about.html' %}
 {% block sub_content %}
 <div class="m-2 p-4 bg-white shadow-lg rounded-lg">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">My Projects</h2>
+    {% comment %} <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">My Projects</h2> {% endcomment %}
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        
         {% for x in projects %}
-        <div class="p-6 bg-white rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 h-96 overflow-auto flex flex-col space-y-3">
-            
-            <!-- Project Name -->
+        <div>
             {% if x.name %}
-            <h3 class="text-lg font-semibold text-gray-800">{{ x.name }}</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-6">{{ x.name }}</h3>
             {% endif %}
+            <div class="p-6 bg-white rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 h-96 overflow-auto flex flex-col space-y-3">
+                
+                <!-- Project Name -->
 
-            <!-- Overview -->
-            {% if x.overview %}
-            <p class="text-gray-600 text-sm text-justify">{{ x.overview }}</p>
-            {% endif %}
+                <!-- Overview -->
+                {% if x.overview %}
+                <p class="text-gray-600 text-sm text-justify">{{ x.overview }}</p>
+                {% endif %}
 
-            <!-- Process Steps -->
-            {% if x.project_step.all %}
-            <p class="text-sm text-gray-700"><strong>Process:</strong></p>
-            <ul class="ml-4 list-disc text-sm text-gray-600 space-y-1">
-                {% for step in x.project_step.all %}
-                <li>{{ step.step_number }}. <strong>{{ step.name }}</strong> - {{ step.description }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+                <!-- Process Steps -->
+                {% if x.project_step.all %}
+                <p class="text-sm text-gray-700"><strong>Process:</strong></p>
+                <ul class="ml-4 list-disc text-sm text-gray-600 space-y-1">
+                    {% for step in x.project_step.all %}
+                    <li>{{ step.step_number }}. <strong>{{ step.name }}</strong> - {{ step.description }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
 
-            <!-- Technologies Used -->
-            {% if x.proj_technology.all %}
-            <p class="text-sm text-gray-700"><strong>Technologies:</strong> 
-                {{ x.proj_technology.all|join:", " }}
-            </p>
-            {% endif %}
+                <!-- Technologies Used -->
+                {% if x.proj_technology.all %}
+                <p class="text-sm text-gray-700"><strong>Technologies:</strong> 
+                    {{ x.proj_technology.all|join:", " }}
+                </p>
+                {% endif %}
 
-            <!-- Category -->
-            {% if x.proj_category.all %}
-            <p class="text-sm text-gray-700"><strong>Category:</strong> 
-                {{ x.proj_category.all|join:", " }}
-            </p>
-            {% endif %}
+                <!-- Category -->
+                {% if x.proj_category.all %}
+                <p class="text-sm text-gray-700"><strong>Category:</strong> 
+                    {{ x.proj_category.all|join:", " }}
+                </p>
+                {% endif %}
 
-            <!-- Features -->
-            {% if x.project_feature.all %}
-            <p class="text-sm text-gray-700"><strong>Features:</strong></p>
-            <ul class="ml-4 list-disc text-sm text-gray-600 space-y-1">
-                {% for feature in x.project_feature.all %}
-                <li>{{ feature.name }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+                <!-- Features -->
+                {% if x.project_feature.all %}
+                <p class="text-sm text-gray-700"><strong>Features:</strong></p>
+                <ul class="ml-4 list-disc text-sm text-gray-600 space-y-1">
+                    {% for feature in x.project_feature.all %}
+                    <li>{{ feature.name }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
 
-            <!-- Status -->
-            {% if x.status %}
-            <p class="text-sm text-gray-700"><strong>Status:</strong> {{ x.status }}</p>
-            {% endif %}
+                <!-- Status -->
+                {% if x.status %}
+                <p class="text-sm text-gray-700"><strong>Status:</strong> {{ x.status }}</p>
+                {% endif %}
 
-            <!-- Repository Link -->
-            {% if x.repository_link %}
-            <div class="mt-auto">
-                <a href="{{ x.repository_link }}" target="_blank" 
-                   class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 transition text-sm">
-                    🔗 View Repo
-                </a>
+                <!-- Repository Link -->
+                {% if x.repository_link %}
+                <div class="mt-auto">
+                    <a href="{{ x.repository_link }}" target="_blank" 
+                    class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 transition text-sm">
+                        🔗 View Repo
+                    </a>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
         {% empty %}
         <p class="text-gray-500 text-center col-span-3">No projects available yet.</p>
