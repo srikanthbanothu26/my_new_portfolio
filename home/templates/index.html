@@ -9,7 +9,19 @@
                     Welcome to My Portfolio!
                 </h1>
                 <p class="text-lg">
-                    I'm <span class="font-semibold">Banothu Srikanth</span>, 
+                    I'm <span class="font-semibold">
+                        {% for x in personal_info %}
+                        {% if x.first_name %}
+                        {{x.first_name}}
+                        {% endif %}
+                        {% if x.middle_name %}
+                        {{x.middle_name}}
+                        {% endif %}
+                        {% if x.last_name %}
+                        {{x.last_name}}
+                        {% endif %}
+                        {% endfor %}
+                    </span>, 
                     a passionate software developer skilled in 
                     <span class="">Python Full Stack Development</span> 
                     and <span class="">Odoo Development</span>.
@@ -19,13 +31,44 @@
                 </p>
             </div>
 
-            <!-- Right Section (Image) -->
+                        <!-- Right Section (Image) -->
             <div class="flex justify-center md:justify-end">
-                <img class="h-96 w-96 rounded-t-xl shadow-lg border-t-2 border-gray-700" 
-                     src="/media/portfolio/static/img/IMG_20250218_095912.jpg" 
-                     alt="Portfolio Image">
+                <img id="animatedImage" class="h-96 w-64 rounded-t-xl shadow-lg border-t-2 border-gray-700 transition-opacity duration-1000 ease-in-out"
+                        src="" 
+                        alt="Portfolio Image">
             </div>
+
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let images = [];
+        
+        {% for x in personal_info %}
+            {% if x.user.all %}
+                {% for user in x.user.all %}
+                    images.push("{{ user.image.url }}");
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+
+        let currentIndex = 0;
+        const imageElement = document.getElementById("animatedImage");
+
+        function changeImage() {
+            imageElement.style.opacity = "0";  // Fade out effect
+            setTimeout(() => {
+                imageElement.src = images[currentIndex];
+                imageElement.style.opacity = "1"; // Fade in effect
+                currentIndex = (currentIndex + 1) % images.length;
+            }, 1000); // Time for fade-out effect
+        }
+
+        if (images.length > 0) {
+            imageElement.src = images[0]; // Set the first image
+            setInterval(changeImage, 20000); // Change image every 20 seconds
+        }
+    });
+</script>
 {% endblock %}

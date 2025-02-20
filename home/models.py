@@ -10,6 +10,9 @@ class PersonalInfo(models.Model):
     email_id=models.CharField("Email",max_length=255,blank=True)
     linked_in=models.CharField("Linked-in",blank=True)
     github=models.CharField("Github",blank=True)
+    twitter=models.CharField("Twitter",blank=True)
+    embedded_location=models.CharField("Embedded Location",blank=True)
+    objective=models.TextField("Describe Yourself",blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
