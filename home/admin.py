@@ -1,6 +1,11 @@
 from django.contrib import admin
-from .models import PersonalInfo,educationInfo,skillInfo,projectinfo,CertificateInfo,WebApplicationInfo,WorkexperienceInfo,Feature,ProcessStep,Category,Technology,CertificateAttachment,Workkeyresponsiblities
+from .models import PersonalInfo,educationInfo,skillInfo,projectinfo,CertificateInfo,WebApplicationInfo,WorkexperienceInfo,Feature,ProcessStep,Category,Technology,CertificateAttachment,Workkeyresponsiblities,ProfileImages
 
+
+class TabularlineprofileImage(admin.TabularInline):
+    model = ProfileImages
+    extra = 1
+    
 class Tabularlinefeature(admin.TabularInline):
     model = Feature
     extra = 1
@@ -32,7 +37,7 @@ class skillInfoAdmin(admin.ModelAdmin):
     list_display = ["name"]
     # inlines = [TabularInlinePersonalInfo] 
 class PersonalInfoAdmin(admin.ModelAdmin):
-    list_display = ("first_name", "middle_name", "last_name","date_of_birth","mobile_number","email_id","linked_in","github")
+    inlines=[TabularlineprofileImage]
     
 class ProjectsAdmin(admin.ModelAdmin):
     inlines=[TabularlineProcessStep, TabularlineTechnology, Tabularlinefeature, TabularlineCategory]

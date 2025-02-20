@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-        <div>
-            <div class="grid grid-cols-2">
-                <div class="objective grid items-center text-center">
-                    <h1 class="text-2xl">Welcome to my portfolio! I'm Banothu Srikanth, 
-                        a passionate software developer skilled in Python Full Stack Development and Odoo Development</h1>
-                </div>
-                <div class="pro-images  grid items-center justify-end m-6">
-                    <div class="w-full">
-                        <img class="h-96 w-96 rounded-xl" src="/media/portfolio/static/img/IMG_20250218_095912.jpg">
-                    </div>
-                </div>
+<div class="min-h-screen  flex items-center justify-center p-4">
+    <div class="container mx-auto px-8">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- Left Section -->
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl font-bold mb-4 leading-snug">
+                    Welcome to My Portfolio!
+                </h1>
+                <p class="text-lg">
+                    I'm <span class="font-semibold">Banothu Srikanth</span>, 
+                    a passionate software developer skilled in 
+                    <span class="">Python Full Stack Development</span> 
+                    and <span class="">Odoo Development</span>.
+                </p>
+                <p class="mt-4">
+                    I build innovative solutions with cutting-edge technologies, ensuring scalable and efficient applications.
+                </p>
+            </div>
+
+            <!-- Right Section (Image) -->
+            <div class="flex justify-center md:justify-end">
+                <img class="h-96 w-96 rounded-t-xl shadow-lg border-t-2 border-gray-700" 
+                     src="/media/portfolio/static/img/IMG_20250218_095912.jpg" 
+                     alt="Portfolio Image">
             </div>
         </div>
+    </div>
+</div>
 {% endblock %}

@@ -13,6 +13,12 @@ class PersonalInfo(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.middle_name} {self.last_name}"
+    
+    
+class ProfileImages(models.Model):
+    
+    user = models.ForeignKey('PersonalInfo', on_delete=models.CASCADE, related_name="user",default=None)  # Add related_name
+    image=models.ImageField("image")
 
 class educationInfo(models.Model):
     
